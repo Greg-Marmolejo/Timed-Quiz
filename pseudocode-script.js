@@ -2,11 +2,11 @@
 //Each object in the array should be structured as follows: 
         //      { q: "QUESTION", a: "ANSWER" }
         var questions = [
-            { q: "Inside which HTML element do we put the JavaScript?", chA:"script" chB:"javascript" chC:"js" a: "A" },
-            { q: "There are 365 days in a year.", a: "t" },
-            { q: "There are 42 ounces in a pound.", a: "f" },
-            { q: "The Declaration of Independence was created in 1745.", a: "f" },
-            { q: "Bananas are vegetables.", a: "f" }
+            {q: "Inside which HTML element do we put the JavaScript?", chA:"script" chB:"javascript" chC:"js" a: "A" },
+            {q: "There are 365 days in a year.", a: "t" },
+            {q: "There are 42 ounces in a pound.", a: "f" },
+            {q: "The Declaration of Independence was created in 1745.", a: "f" },
+            {q: "Bananas are vegetables.", a: "f" }
         ];
    // We start the game with a score of 0.
    var score = 0;

@@ -1,9 +1,9 @@
 var qNum = 0;
 var test, test_status, question, choice, choices, chA, chB, chC;
-var score = 25;
+var score = 75;
 var correct = 0;
 var pointsDeducted = 0
-var secondsRemaining = 5;
+var secondsRemaining = 15;
 var interval;
 var highscore = localStorage.getItem("highscore");
 
@@ -31,7 +31,7 @@ function renderQuestion() {
     // stops rest of renderQuestion function running when test is completed
     recordScores();
     test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct.</h2>";
-    test.innerHTML = "<h2>You scored " + score + " out of 50.  The high score is " + highscore + ".</h2>";
+    test2.innerHTML = "<h2>You scored " + score + " out of 150.  The high score is " + highscore + ".</h2>";
     get("test_status").innerHTML = "Test completed";
     return;
   }
@@ -50,7 +50,7 @@ function renderQuestion() {
 }
 
 function startTimer() {
-  secondsRemaining = 5;
+  secondsRemaining = 15;
   interval = setInterval(decrementTime, 1000);
 }
 
@@ -60,7 +60,7 @@ function decrementTime() {
   // renderTime();
   if (secondsRemaining === 0) {
     stopTimer();
-    alert("Time's Up.  5 points deducted.  Next question.");
+    alert("Time's Up.  15 points deducted.  Next question.");
     checkAnswer();
   }
 }
@@ -83,11 +83,14 @@ function checkAnswer() {
   if (choice == questions[qNum][4]) {
     //each time there is a correct answer this value increases
     correct++;
-    score = score + 5
+    score = score + 15;
+    console.log("Score: " + score); 
   }
-
+  else {
+    renderQuestion();
+  }
   // Updates the score
-  pointsDeducted = (5 - secondsRemaining);
+  pointsDeducted = (15 - secondsRemaining);
   score = score - pointsDeducted
   console.log("Points Deducted: " + pointsDeducted)
 
@@ -108,4 +111,5 @@ function recordScores() {
   }
 }
 
+console.log(score);
 renderQuestion();

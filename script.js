@@ -1,12 +1,11 @@
-confirm("Would you like to start the quiz?"); {
-
-  window.addEventListener("load", renderQuestion, false);
+window.addEventListener("load", renderQuestion, false);
 
 console.log("Hello World")
 
 //records the time the quiz starts
 var start = Date.now();
 var highscore = 0;
+var highscore = localStorage.getItem("highscore");
 var qNum = 0;
 var correct = 0;
 var test, test_status, question, choice, choices, chA, chB, chC;
@@ -73,9 +72,10 @@ function gameOver(){
 var end = Date.now();
 var elapsed = end - start; // elapsed time in milliseconds
 console.log(elapsed);
+console.log(highscore);
 }
 
-function highscore (){
+function recordScores (){
   // Calculates the score from number correct and time elapsed.
 var score = (correct * 1000 - elapsed);
 
@@ -87,9 +87,5 @@ if (highscore !== null) {
   if (score > highscore) {
     localStorage.setItem("highscore", score);
   }
-}
-else {
-  localStorage.setItem("highscore", score);
-};
 }
 }

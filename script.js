@@ -18,7 +18,18 @@
     return document.getElementById(x);
   }
 
+  function startGame() {
+    console.log("started");
+    startButton.classList.add("hide");
+    shuffledQuestion = question.sort(() => Math.random() - 0.5);
+    currentQuestionIndex = 0;
+    questionContainerElement.classList.remove("hide");
+    renderQuestion();
+  }
+
   function renderQuestion() {
+    console.log("Seconds remaining = " + secondsRemaining)
+    console.log("Score = " + score)
     test = get("test");
     recordScores();
     if (qNum >= questions.length) {
@@ -46,7 +57,10 @@
     startTimer ();
   }
 
+  //This works with X function to dock 5 seconds when answer is wrong.
   function renderQuestionX() {
+      console.log("Seconds remaining = " + secondsRemaining)
+      console.log("Score = " + score)
     test = get("test");
     recordScores();
     if (qNum >= questions.length) {
@@ -78,6 +92,7 @@
     interval = setInterval(decrementTime, 1000);
   }
 
+  //This works with renderQuestionX function to dock 5 seconds when answer is wrong.
   function startTimerX() {
     secondsRemaining = secondsRemaining - 5;
     interval = setInterval(decrementTime, 1000);
@@ -110,12 +125,13 @@
     if (choice == questions[qNum][4]) {
       //each time there is a correct answer this value increases
       correct++;
-      // pointsDeducted = (15 - secondsRemaining);
       score = score + 15 + secondsRemaining
     }
     else {
       alert("Wrong answer - 5 seconds and 5 points docked.")
-      renderQuestionX();
+      renderQuestionX();  // This should take the user back to redo the same question.
+      console.log("Seconds remaining = " + secondsRemaining)
+      console.log("Score = " + score)
     }
     // updates question number
     qNum++;

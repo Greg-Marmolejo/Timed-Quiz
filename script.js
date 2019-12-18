@@ -46,11 +46,42 @@
     startTimer ();
   }
 
+  function renderQuestionX() {
+    test = get("test");
+    recordScores();
+    if (qNum >= questions.length) {
+      // stops rest of renderQuestion function running when test is completed
+      test.innerHTML = "<h2>You got " + correct + " of " + questions.length + " questions correct</h2>";
+      test2.innerHTML = "<h2>You scored " + score + " out of 150.  The high score is " + highscore + ".</h2>";
+      if (score === highscore) {
+      test3.innerHTML = "<h2>You scored the highest!</h2>"
+      }
+      get("test_status").innerHTML = "Test completed";
+      return;
+    }
+    
+    get("test_status").innerHTML = "Question " + (qNum + 1) + " of " + questions.length;
+    question = questions[qNum][0];
+    chA = questions[qNum][1];
+    chB = questions[qNum][2];
+    chC = questions[qNum][3];
+    test.innerHTML = "<h3>" + question + "</h3>";
+    // the += appends to the data we started on the line above
+    test.innerHTML += "<input type='radio' name='choices' value='A'> " + chA + "<br>";
+    test.innerHTML += "<input type='radio' name='choices' value='B'> " + chB + "<br>";
+    test.innerHTML += "<input type='radio' name='choices' value='C'> " + chC + "<br><br>";
+    test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+    startTimerX ();
+  }
   function startTimer() {
     secondsRemaining = 15;
     interval = setInterval(decrementTime, 1000);
   }
 
+  function startTimerX() {
+    secondsRemaining = secondsRemaining - 5;
+    interval = setInterval(decrementTime, 1000);
+  }
   function decrementTime() {
     //alert if no time left and clear interval
       secondsRemaining--;
@@ -81,6 +112,10 @@
       correct++;
       // pointsDeducted = (15 - secondsRemaining);
       score = score + 15 + secondsRemaining
+    }
+    else {
+      alert("Wrong answer - 5 seconds and 5 points docked.")
+      renderQuestionX();
     }
     // updates question number
     qNum++;

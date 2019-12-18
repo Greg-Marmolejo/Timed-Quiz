@@ -56,7 +56,7 @@
       secondsRemaining--;
       if (secondsRemaining ===0) {
         stopTimer();
-        alert("Time's Up.  15 points deducted.  Next question.");
+        alert("Time's Up. Next question.");
         checkAnswer();
       }
   }
